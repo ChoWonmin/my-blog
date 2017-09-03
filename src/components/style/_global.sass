@@ -1,0 +1,61 @@
+html
+  background: #eee
+
+body
+  background: #eee
+  padding: 0
+  margin: 0
+
+*
+  box-sizing: border-box
+
+a.not-a
+  text-decoration: none
+  color: inherit
+
+$max-width: 960px
+
+.fluid-width
+  width: 100%
+
+.content-width
+  max-width: $max-width
+  width: 100%
+  margin: auto
+
+@mixin vertical-align
+  display: inline-block
+  vertical-align: top
+
+@mixin fluid-width
+  width: 100%
+  max-width: $max-width
+  margin: auto
+  padding: 0 5%
+  @media screen and (max-width: 480px)
+    padding: 0 8px
+
+@mixin content-width
+  max-width: $max-width
+  width: 100%
+  margin: auto
+
+@mixin pad-vertical($val)
+  padding-top: $val
+  padding-bottom: $val
+
+@mixin inline-block
+  display: inline-block
+  vertical-align: top
+
+@mixin nav-shadow
+  box-shadow: rgba(0, 0, 0, 0.14) 0px 4px 5px 0px, rgba(0, 0, 0, 0.12) 0px 1px 10px 0px, rgba(0, 0, 0, 0.2) 0px 2px 4px -1px
+
+@mixin card-box-shadow
+  $box-shadow-opacity: 0.4
+  -webkit-box-shadow: 0 2px 4px 0 rgba(50, 50, 50, $box-shadow-opacity)
+  -moz-box-shadow: 0 2px 4px 0 rgba(50, 50, 50, $box-shadow-opacity)
+  box-shadow: 0 2px 4px 0 rgba(50, 50, 50, $box-shadow-opacity)
+
+@mixin card-border-radius
+  border-radius: 2px
