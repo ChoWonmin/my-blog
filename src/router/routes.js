@@ -3,6 +3,7 @@
  */
 import Page1 from '../components/page1';
 import Page2 from '../components/page2';
+import Page3 from '../components/page3';
 
 export default [
   {
@@ -14,6 +15,11 @@ export default [
     path: '/page2',
     name: 'page2',
     component: Page2,
+  },
+  {
+    path: '/page3',
+    name: 'page3',
+    component: Page3,
   },
   {
     path: '*',

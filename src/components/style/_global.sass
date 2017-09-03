@@ -27,7 +27,7 @@ $max-width: 960px
   display: inline-block
   vertical-align: top
 
-@mixin fluid-width
+@mixin content-width
   width: 100%
   max-width: $max-width
   margin: auto
@@ -35,8 +35,7 @@ $max-width: 960px
   @media screen and (max-width: 480px)
     padding: 0 8px
 
-@mixin content-width
-  max-width: $max-width
+@mixin fluid-width
   width: 100%
   margin: auto
 
