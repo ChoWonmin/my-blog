@@ -1,9 +1,8 @@
-# foxtail.web.template.webpack-vuecli
-> foxtail web template : webpack,vuecli,sass
+# thethelab.web.template.vue-router
+> 라이브러리 환경 : vue-router, webpack, eslint, jsdoc
 
-SPA 개발을 위한 vue-cli template.
-
-API 서버와 분리된 환경이 필요할 때 사용합니다.
+Vue-router Template
+SPA 개발에 적합하며 API 서버와 분리된 환경에서 사용 하고자 한다.
 
 ## Publish Setup
 ``` bash
@@ -13,10 +12,10 @@ npm install
 # build for production with minification
 npm run build
 
-# publish 
+# publish
 npm start
 
-``` 
+```
 ## Development Setup
 
 ``` bash
@@ -28,12 +27,37 @@ npm run dev
 
 ```
 
-## Information 
 
-Babel : stage-2 [ > 1%,  last 2 versions, not ie <= 8 ] 
+
+## JSDOC Setup
+
+``` bash
+
+# serve at localhost:3000/statis/api/index.html
+npm run generate-docs
+
+```
+
+## Others
+
+Babel Preset : stage-2
+```
+
+browers : > 1%,  last 2 versions, not ie <= 8 )
+
+```
 
 ESLint : Airbnb
 
 Vue Guide : [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
 
-Config : default port 3000 [ ./config/index.js ] 
+Config : default port 3000 [ ./config/index.js ]
+
+
+WebStorm Scheme :
+
+#ESLint Scheme for Webstorm
+./foxtail-webstorm-scheme.xml
+
+
+

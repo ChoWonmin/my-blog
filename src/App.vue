@@ -34,6 +34,8 @@
   @import "components/style/global"
   @import "components/style/nav"
 
+  .name
+    font-size : 12px
 
   .fade-enter-active, .fade-leave-active
     transition-property: opacity
@@ -41,7 +43,6 @@
 
   .fade-enter-active
     transition-delay: .25s
-
 
   .fade-enter, .fade-leave-active
     opacity: 0

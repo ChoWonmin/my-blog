@@ -12,6 +12,9 @@ yarn-error.log*
 *.njsproj
 *.sln
 
+static/api/
+
+
 package-lock.json
 
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio and WebStorm

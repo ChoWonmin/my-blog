@@ -34,5 +34,10 @@ module.exports = {
     // In our experience, they generally work as expected,
     // just be aware of this issue when enabling this option.
     cssSourceMap: false
+  },
+  publish: {
+    assetsSubDirectory: 'static',
+    assetsPublicPath: './dist',
+    port: 3000,
   }
-}
+};
