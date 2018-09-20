@@ -1,20 +1,19 @@
 <template lang="jade">
-
-
-
+  .full
 </template>
 
 <script>
-    export default {
-      progs: {
+    import { dataModule } from '../js/firebase.wrapper';
 
-      },
-      data: funcion () {
+    export default {
+      data() {
         return {
-          disabled: false,
+          userList: {},
         };
       },
-      methods: {
+      async mounted() {
+        this.userList = (await dataModule.get('/user/')).val();
+        console.log(this.userList);
       },
     };
 </script>

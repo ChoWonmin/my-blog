@@ -1,60 +1,66 @@
-html
-  background: #eee
+@import "variable"
 
-body
-  background: #eee
-  padding: 0
-  margin: 0
-
-*
-  box-sizing: border-box
-
-a.not-a
-  text-decoration: none
-  color: inherit
-
-$max-width: 960px
-
-.fluid-width
-  width: 100%
-
-.content-width
-  max-width: $max-width
-  width: 100%
-  margin: auto
-
-@mixin vertical-align
-  display: inline-block
-  vertical-align: top
-
-@mixin content-width
-  width: 100%
-  max-width: $max-width
-  margin: auto
-  padding: 0 5%
-  @media screen and (max-width: 480px)
-    padding: 0 8px
-
-@mixin fluid-width
-  width: 100%
-  margin: auto
-
-@mixin pad-vertical($val)
-  padding-top: $val
-  padding-bottom: $val
 
 @mixin inline-block
   display: inline-block
   vertical-align: top
 
-@mixin nav-shadow
-  box-shadow: rgba(0, 0, 0, 0.14) 0px 4px 5px 0px, rgba(0, 0, 0, 0.12) 0px 1px 10px 0px, rgba(0, 0, 0, 0.2) 0px 2px 4px -1px
+@mixin text-center($height)
+  text-align: center !important
+  line-height: $height !important
 
-@mixin card-box-shadow
-  $box-shadow-opacity: 0.4
-  -webkit-box-shadow: 0 2px 4px 0 rgba(50, 50, 50, $box-shadow-opacity)
-  -moz-box-shadow: 0 2px 4px 0 rgba(50, 50, 50, $box-shadow-opacity)
-  box-shadow: 0 2px 4px 0 rgba(50, 50, 50, $box-shadow-opacity)
+@mixin hover-background($color)
+  background : $color
+  &:hover
+    background : lighten($color,10)
+  &:active
+    background : darken($color,10)
 
-@mixin card-border-radius
-  border-radius: 2px
+@mixin shadow($opa)
+  -webkit-box-shadow: 0 1px 8px 0 rgba(0,0,0,$opa), 0 3px 4px 0 rgba(0,0,0,$opa), 0 3px 3px -2px rgba(0,0,0,$opa)
+  -moz-box-shadow: 0 1px 8px 0 rgba(0,0,0,$opa), 0 3px 4px 0 rgba(0,0,0,$opa), 0 3px 3px -2px rgba(0,0,0,$opa)
+  box-shadow: 0 1px 8px 0 rgba(0,0,0,$opa), 0 3px 4px 0 rgba(0,0,0,$opa), 0 3px 3px -2px rgba(0,0,0,$opa)
+
+@mixin card($opa, $padding)
+  @include shadow($opa)
+  padding : $padding+px
+
+
+@mixin border-radius($val)
+  -webkit-border-radius: $val
+  -moz-border-radius: $val
+  border-radius: $val
+
+@mixin media-phone
+  @media screen and (max-width : 480px)
+    @content
+
+@mixin media-tablet
+  @media screen and (max-width : 960px) and (min-width : 481px)
+    @content
+
+@mixin media-desktop
+  @media screen and (max-width : 1280px) and (min-width : 961px)
+    @content
+
+@mixin media-huge
+  @media screen and (min-width : 1440px)
+    @content
+
+
+.gone-phone
+  @include media-phone
+    display: none !important
+
+.gone-tablet
+  @include media-tablet
+    display: none !important
+
+.gone-desktop
+  @include media-desktop
+    display: none !important
+
+@mixin make-cell($width)
+  @include inline-block
+  width: $width
+  padding: 12px

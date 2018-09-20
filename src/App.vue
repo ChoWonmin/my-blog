@@ -1,20 +1,26 @@
+<script src="js/firebase.wrapper.js"></script>
 <template>
   <div id="app">
-    <nav>
-      <div class="nav-content">
-        <div class="title">
-          <router-link class="nav-item not-a" v-bind:to="{ name: 'page1' }">{{title}}</router-link>
-        </div>
+    <!--<div class="nav">-->
+      <!--<div class="nav-content">-->
+        <!--<div class="title">-->
+          <!--<div class="nav-item">나의 블로그</div>-->
+        <!--</div>-->
+      <!--</div>-->
 
-        <div class="nav-item-group">
-          <router-link class="nav-item not-a" v-bind:to="{ name: 'page2' }">page2</router-link>
-          <router-link class="nav-item not-a" v-bind:to="{ name: 'page3' }">page3</router-link>
-        </div>
+      <!--<div class="nav-item-group">-->
+        <!--<div class="nav-item">page1</div>-->
+        <!--<div class="nav-item">page2</div>-->
+        <!--<div class="nav-item">page3</div>-->
+      <!--</div>-->
+    <!--</div>-->
+    <div class="sector">
+      <div class="content-view">
+        <transition name="fade">
+          <router-view></router-view>
+        </transition>
       </div>
-    </nav>
-    <transition name="fade">
-      <router-view></router-view>
-    </transition>
+    </div>
   </div>
 </template>
 
@@ -23,7 +29,7 @@
     name: 'app',
     data() {
       return {
-        title: 'Foxtail Vue Template',
+        title: 'Vue Template',
       };
     },
   };
@@ -32,20 +38,58 @@
 <style lang="sass">
   @import "components/style/font"
   @import "components/style/global"
-  @import "components/style/nav"
+  @import "components/style/grid"
 
-  .name
-    font-size : 12px
+  *
+    box-sizing: border-box
 
-  .fade-enter-active, .fade-leave-active
-    transition-property: opacity
-    transition-duration: .25s
+  body
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif
+    font-weight: 400
+    font-height: 400
+    padding: 0
+    margin: 0
 
-  .fade-enter-active
-    transition-delay: .25s
+  .card
+    @include card(0.12,12)
+    @include border-radius(3px)
 
-  .fade-enter, .fade-leave-active
-    opacity: 0
+  .flex
+    display: flex
+
+  #app
+    width: 100%
+    height: 100vh
+    overflow: hidden
+    display: flex
+    .nav
+      background: #333333
+      height: 100%
+      width: 40px
+      transition: width .2s
+      &:hover
+        width: 100px
+      .title
+        width: 100% !important
+      .nav-item
+        width: 100% !important
+      .nav-item-group
+        width: 100%
+        .nav-item
+          white-space: nowrap
+          display: block
+          width: 100%
+
+    .sector
+      flex: 1
+      height: 100%
+      .inner-nav
+        height: 56px
+        background: #1cccc6
+      .content-view
+        overflow-y: scroll !important
+        background: #FFFFFF
+        height: calc(100% - 56px)
 
 
 </style>

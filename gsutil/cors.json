@@ -1,0 +1,8 @@
+[
+  {
+    "origin": ["http://origin1.example.com", "http://127.0.0.1", "http://www.wonmin.xyz"],
+    "responseHeader": ["Content-Type"],
+    "method": ["GET"],
+    "maxAgeSeconds": 3600
+  }
+]

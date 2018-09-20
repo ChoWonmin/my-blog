@@ -1,0 +1,53 @@
+@import "variable"
+@import "global"
+
+.grid
+  width: 100%
+
+  .cell-2
+    @include make-cell(calc(100% / 6))
+    @include media-tablet
+      width: 25%
+    @include media-phone
+      width: 50%
+  .cell-3
+    @include make-cell(calc(100% / 4))
+    @include media-desktop
+      width: 33%
+    @include media-tablet
+      width: 50%
+    @include media-phone
+      width: 80%
+      margin: 20px
+    @include media-huge
+      width: 25%
+  .cell-4
+    @include make-cell(calc(100% / 3))
+    @include media-tablet
+      width: 50%
+    @include media-phone
+      width: 100%
+  .cell-6
+    @include make-cell(calc(100% / 2))
+    @include media-tablet
+      width: calc(100%*2 / 3)
+    @include media-phone
+      width: 100%
+  .cell-8
+    @include make-cell(calc(100%*2 / 3))
+    @include media-tablet
+      width: 100%
+    @include media-phone
+      width: 100%
+
+  .cell-12
+    @include make-cell(100%)
+
+.empty
+  flex: 1
+
+.test
+  border: solid #3a475c 3px
+
+.content
+  height: 100px

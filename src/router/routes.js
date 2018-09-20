@@ -1,25 +1,28 @@
-/**
- * Created by hyunwoo on 2017-08-31.
- */
-import Page1 from '../components/page1';
-import Page2 from '../components/page2';
-import Page3 from '../components/page3';
+import Components from '../components/components';
+import Editor from '../components/editor';
+import Signin from '../components/signIn';
+import PostList from '../components/postList';
 
 export default [
   {
+    path: '/components',
+    name: 'components',
+    component: Components,
+  },
+  {
+    path: '/editor',
+    name: 'editor',
+    component: Editor,
+  },
+  {
+    path: '/signin',
+    name: 'signin',
+    component: Signin,
+  },
+  {
     path: '/',
-    name: 'page1',
-    component: Page1,
-  },
-  {
-    path: '/page2',
-    name: 'page2',
-    component: Page2,
-  },
-  {
-    path: '/page3',
-    name: 'page3',
-    component: Page3,
+    name: 'postList',
+    component: PostList,
   },
   {
     path: '*',
