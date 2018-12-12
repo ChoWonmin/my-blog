@@ -3,7 +3,17 @@
     .menu-bar-wraper
       .menu-bar.flex
         .small-menu
-          input.post-title-input
+          input(v-model='title' placeholder="title").title-input
+        .small-menu
+          input(v-model='url' placeholder="url").sub-input
+        .small-menu
+          input(v-model='category' placeholder="category").sub-input
+        .small-menu
+          input(v-model='color' placeholder="color").sub-input
+        .empty
+      .menu-bar.flex
+        .small-menu
+          input(v-model='description' placeholder="description").title-input
         .small-menu.flex
           Button(:icon="'bold'", :option="'small'", :is_awesome="true", :tooltip="'bold'", v-on:click="insertWord('**','**')")
           Button(:icon="'italic'", :option="'small'", :is_awesome="true", :tooltip="'italic'", v-on:click="insertWord('_','_')")
@@ -29,14 +39,20 @@
 <script>
   import md from 'markdown';
   import Button from './lib/button';
+  import Dropdown from './lib/dropDown';
   import { dataModule, storageModule } from '../js/firebase.wrapper';
 
   export default {
-    components: { Button },
+    components: { Button, Dropdown },
     data() {
       return {
         inputContent: '',
         postList: {},
+        title: '',
+        category: undefined,
+        url: undefined,
+        description: undefined,
+        color: undefined,
       };
     },
     methods: {
@@ -68,13 +84,21 @@
       async save() {
         const dataRef = await dataModule.getRef();
         const id = dataRef.child('posts').push().key;
-        await dataModule.set(`/posts/${id}/`, { title: 'hello' });
-        const storageRef = await storageModule.getRef(`/posts/${id}/`);
-        await storageModule.putString(storageRef, this.compiledMarkdown());
+        await dataModule.set(`/posts/${id}/`, {
+          id: id,
+          title: this.title,
+          category: this.category,
+          url: this.url,
+          description: this.description,
+          color: this.color,
+          content: this.compiledMarkdown(),
+        });
+        // const storageRef = await storageModule.getRef(`/mdList/${id}/`);
+        // await storageModule.putString(storageRef, this.compiledMarkdown());
+        this.$router.push('/');
       },
       async upload() {
         this.postList = (await storageModule.getRef('posts')).val();
-        console.log(this.postList, 'postList');
       },
     },
   };
@@ -93,16 +117,21 @@
       padding: 15px
       .menu-bar
         height: 40px
+        margin-top: 8px
         .small-menu
           margin: 0 10px
           box-shadow: 0 2px 8px rgba(0, 0, 0, .33)
-          .post-title-input
+          input
             outline: none
             border: solid 0px
             border-radius: 4px
-            width: 30vw
             height: 100%
             @include shadow(.12)
+            text-indent: 4px
+            &.title-input
+              width: 25vw
+            &.sub-input
+              width: 200px
           .save-btn
             width: 112px
             float: right
@@ -120,7 +149,7 @@
           outline: none
       .rendered
         padding: 16px
-        flex: 2
+        width: 65vw
         border-left: solid 1px #ccc
         p
           border: solid 10px red

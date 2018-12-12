@@ -6,38 +6,12 @@
       .flex-item
 
     .post-wrap.grid
-      .cell-3
-        Post-box(:title="'Webtoon color'",:text="'웹툰의 색채를 Kobayashi image scale에 따라 감정어휘 지도로 시각화'" v-on:click="open")
-      .cell-3
-        Post-box(:title="'Yori-Jori'",:text="'사용자의 음성을 인식해서 명령에 따라 다음 요리 순서 혹은 이전 요리 순서 등 알려주는 웹 서비스'" v-on:click="open")
-      .cell-3
-        Post-box(:title="'three.js tutorial'", :text="'media art(fractal), geometry buffer만을 사용해서 3차원 그래픽 구현'" v-on:click="open")
-      .cell-3
-        Post-box(:title="'World Cup tactics'", :text="'월드컵에서 국가별로 전술의 특징을 parallel coordinate로 시각화'" v-on:click="open")
-      .cell-3
-        Post-box(:bgColor="'#E74C3C'",:category="'PHP'", :title="'media industry Link'",:text="'미디어 학과 학생들이 진로를 찾기 수월하도록 교과과정표, 학부생과 졸업생과의 커뮤니티 등을 서비스'" v-on:click="open")
-      .cell-3
-        Post-box(:bgColor="'#2ECC71'",:category="'Spring'", :title="'IndieStream'",:text="'음악을 통한 SNS'" v-on:click="open")
-      .cell-3
-        Post-box(:title="'PurePoll'", :text="'The aim of the project is to create an clear poll using blockchain.'" v-on:click="open")
-      .cell-3
-        Post-box(:title="'Genealogy of thesis'", :text="'Visualization of the genealogy of an thesis'" v-on:click="open")
-
-    .write-modal.modal-mask(v-show="showModal", v-on:click="close")
-      .modal-wrapper(v-on:keyup.esc="close")
-        .modal-container(v-on:click.stop="")
-          .modal-body
-            .content
-              img(v-bind:src="'/static/img/three02.png'").content-img
-              img(v-bind:src="'/static/img/three01.png'").content-img
-              img(v-bind:src="'/static/img/three03.png'").content-img
-          .modal-footer
-
+      .cell-3(v-for="item in postList")
+        Post-box(:title="item.title", :text="item.description", :category="item.category", :bgColor="item.color",  v-on:click="open(item.url)")
 
 </template>
 
 <script>
-  import Vue from 'vue';
   import { dataModule } from '../js/firebase.wrapper';
   import PostBox from './lib/postBox';
   import Button from './lib/button';
@@ -46,28 +20,15 @@
     components: { PostBox, Button },
     data() {
       return {
-        userList: {},
-        showModal: false,
+        postList: {},
       };
     },
     async mounted() {
-      this.userList = (await dataModule.get('/user/')).val();
-      dataModule.addOnChange('/post', (data) => {
-        Vue.set(this.userList, data.key, data.val());
-      });
+      this.postList = (await dataModule.get('/posts/')).val();
     },
     methods: {
-      showWriteModal() {
-        this.$router.push('/editor');
-      },
-      open() {
-        console.log('oepn');
-        this.showModal = true;
-      },
-      close() {
-        this.showModal = false;
-      },
-      write() {
+      open(url) {
+        location.href = `http://${url}`;
       },
     },
   };
