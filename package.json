@@ -9,7 +9,8 @@
     "start": "env NODE_ENV=production && node build/publish.js",
     "build": "env NODE_ENV=production && node build/build.js",
     "lint": "eslint --ext .js,.vue src",
-    "generate-docs": "node_modules/.bin/jsdoc -c jsdoc.json"
+    "generate-docs": "node_modules/.bin/jsdoc -c jsdoc.json",
+    "git-deploy": "mv dist docs"
   },
   "dependencies": {
     "compression": "^1.7.2",
